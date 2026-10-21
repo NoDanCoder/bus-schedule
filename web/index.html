@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bus Alert</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="vendor/leaflet.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<aside id="panel">
+  <header>
+    <h1>Bus Alert</h1>
+    <span id="status" class="pill off" title="connection to the server">connecting…</span>
+  </header>
+  <div id="banner" hidden></div>
+
+  <section>
+    <h2>Watch a stop</h2>
+    <div class="row">
+      <input id="q" type="search" placeholder="Stop name or code" autocomplete="off" aria-label="Search stops">
+      <button id="near" type="button" title="Stops near me">📍</button>
+    </div>
+    <ul id="results"></ul>
+    <form id="add" hidden>
+      <div id="picked"></div>
+      <div id="routes" class="chips" aria-label="Routes to watch"></div>
+      <label>Alert before arrival (minutes)
+        <input id="thresholds" value="10, 5, 2, 1" inputmode="numeric">
+      </label>
+      <label>Phone push topic <small>(optional, <a href="https://ntfy.sh" target="_blank" rel="noopener">ntfy</a>)</small>
+        <input id="ntfy" placeholder="e.g. my-secret-bus-topic" autocomplete="off">
+      </label>
+      <button type="submit" class="primary">Start watching</button>
+    </form>
+  </section>
+
+  <section>
+    <h2>Watching</h2>
+    <div id="watches"><p class="muted">Nothing yet. Search for the stop you’ll be waiting at.</p></div>
+  </section>
+
+  <section>
+    <h2>Alerts</h2>
+    <button id="notify" type="button" hidden>Enable notifications &amp; sound</button>
+    <ul id="log"><li class="muted">No alerts yet.</li></ul>
+  </section>
+</aside>
+<main id="map" aria-label="Live map"></main>
+<div id="toasts" aria-live="assertive"></div>
+<script src="vendor/leaflet.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
